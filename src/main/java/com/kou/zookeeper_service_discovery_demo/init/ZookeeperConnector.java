@@ -31,7 +31,15 @@ public class ZookeeperConnector implements CommandLineRunner {
         client.start();
         String ip = "127.0.0.1";
         String hostAndPort = ip + ":" + port;
+        String path = "/server1/" + hostAndPort;
+        try {
+            if (client.checkExists().forPath(path) != null) {
+                client.delete().forPath(path);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL)
-                .forPath("/server1/" + hostAndPort, String.valueOf(weight).getBytes(StandardCharsets.UTF_8));
+                .forPath(path, String.valueOf(weight).getBytes(StandardCharsets.UTF_8));
     }
 }
