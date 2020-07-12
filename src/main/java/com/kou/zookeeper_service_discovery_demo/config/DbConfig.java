@@ -2,11 +2,10 @@ package com.kou.zookeeper_service_discovery_demo.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@PropertySource(value = "db.properties")
+//@PropertySource(value = "db.properties")
 @ConfigurationProperties(prefix = "spring.datasource")
 @Data
 public class DbConfig {

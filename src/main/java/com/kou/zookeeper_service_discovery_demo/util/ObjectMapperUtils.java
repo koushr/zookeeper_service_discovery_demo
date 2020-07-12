@@ -1,15 +1,15 @@
 package com.kou.zookeeper_service_discovery_demo.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
-import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
-import com.hubspot.jackson.datatype.protobuf.ProtobufModule;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
@@ -42,8 +42,8 @@ public final class ObjectMapperUtils {
         MAPPER.enable(ALLOW_UNQUOTED_CONTROL_CHARS);
         MAPPER.enable(ALLOW_COMMENTS);
         MAPPER.registerModule(new ParameterNamesModule());
-        MAPPER.registerModule(new KotlinModule());
-        MAPPER.registerModule(new ProtobufModule());
+        MAPPER.enable(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT);
+        MAPPER.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
     }
 
     public static String toJSON(@Nullable Object obj) {
