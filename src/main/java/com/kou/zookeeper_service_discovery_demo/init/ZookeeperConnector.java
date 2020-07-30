@@ -7,13 +7,13 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 
 @Component
-@EnableConfigurationProperties
+@Order(0)
 public class ZookeeperConnector implements CommandLineRunner {
     @Value("${server.weight}")
     private int weight;

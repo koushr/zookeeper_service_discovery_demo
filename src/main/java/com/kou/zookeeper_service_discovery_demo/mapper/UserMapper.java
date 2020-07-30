@@ -8,6 +8,8 @@ import java.util.Map;
 @Component
 public interface UserMapper {
 
-    List<Map> getAll();
+    List<Map<String, Object>> getAll(String name);
+
+    Map<String, Object> getUser(Map<String, Object> map);
 
 }

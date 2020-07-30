@@ -5,10 +5,11 @@
 <mapper namespace="com.kou.zookeeper_service_discovery_demo.mapper.UserMapper">
 
     <select id="getAll" resultType="map">
-        SELECT state as "state", count(city) as "cityCount", sum(population) as "populationSum"
-        FROM us_population
-        GROUP BY state
-        ORDER BY sum(population) DESC
+        select * from t_indicator_item where FName like #{name}
+    </select>
+
+    <select id="getUser" parameterType="map" resultType="map">
+        select * from user where user_name = #{userName} and password = #{password}
     </select>
 
 </mapper>
